@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
+import { required } from "react-admin";
 
-export const PlaceSchema = new mongoose.Schema({
+const PlaceSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String },
   location_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Location', required: true },
   category_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
+  image_id: { type: mongoose.Schema.Types.ObjectId, ref: 'PlaceImage'},
   tags: { type: [String] },
-  // image_ids:[{type: mongoose.Schema.Types.ObjectId, ref: 'PlaceImage' }],
-  pictures:{type:[String]},
   video: { type: String },
   latitude: { type: Number },
   longitude: { type: Number },
@@ -16,7 +16,28 @@ export const PlaceSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const Place = mongoose.model('Place',PlaceSchema);
-export default Place;
+// export default Place;
 
+const NearbyPlaces = new mongoose.Schema(
+  {
+    place_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Place',
+      required: true,
+    },
+    nearbyplace_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Place',
+      required: true,
+    },
+     distance_km: {
+      type: Number,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
+const nearbyplace = mongoose.model('nearbyplace', NearbyPlaces);
 
+export {Place,nearbyplace}

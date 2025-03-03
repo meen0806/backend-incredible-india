@@ -6,10 +6,15 @@ export const LocationSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    description:{
+    type:String
+    },
+    
     favorite: {
       type:Boolean,
       default:false
     },
+    
     most_visited: {
       type:Boolean,
       default:false
@@ -24,9 +29,7 @@ export const LocationSchema = new mongoose.Schema(
       default: null, 
     },
   },
-
-
-  { timestamps: true }
+{ timestamps: true }
 );
 
 const Location = mongoose.model('Location', LocationSchema);

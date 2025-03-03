@@ -6,6 +6,10 @@
   import categoryRoutes from "./Routes/categoryRoutes.js";
   import placeRoutes from "./Routes/placesRoutes.js";
   import transportRoutes from "./Routes/transportRoutes.js";
+  import locationTransportRoutes from "./Routes/LocationTransportRoutes.js";
+  import imageUploadRoutes from "./Routes/imageUploadRoutes.js"
+  import SearchRouter from "./Routes/SearchRoutes.js";
+
   import multer from "multer";
 
   dotenv.config();
@@ -15,7 +19,12 @@
   app.use(cors()); 
 
   const upload =  multer();
-  // app.use();
+ 
+  app.use(cors({ origin: "http://localhost:3000" }));
+
+
+  app.use("/uploads", express.static("uploads"));
+
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -25,12 +34,14 @@
 
   app.use(express.json());
   app.use(cors());
-  app.use("/uploads", express.static("uploads"));
 
+  app.use("/ckeditor",imageUploadRoutes);
   app.use("/locations", locationRoutes);
   app.use("/categories", upload.none(), categoryRoutes);
   app.use("/places", placeRoutes);
   app.use("/transport", upload.none(), transportRoutes);
+  app.use("/locationtransport", upload.none(), locationTransportRoutes);
+  app.use("/search",SearchRouter);
 
 
   app.listen(PORT, () => {

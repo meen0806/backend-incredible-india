@@ -1,15 +1,10 @@
+
 import mongoose from "mongoose";
-
-
+import { required } from "react-admin";
 export const PlaceImageSchema = new mongoose.Schema({
-  picture: { type: [String], required: true },
-  place_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Place', required: true },
-  title:{type : String, required:true},
-  activate:{type:Boolean,default:false}
+  place_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Place', required: true }, // Reference to Place
+  pictures: { type: [String], required:true },
 }, { timestamps: true });
 
-const Palace = mongoose.model('PlaceImage',PlaceSchema);
-export default Palace;
-
-
-
+const PlaceImage = mongoose.model('PlaceImage', PlaceImageSchema);
+export default PlaceImage;

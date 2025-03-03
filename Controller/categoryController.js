@@ -4,7 +4,7 @@ import Category from "../Models/category.model.js"
 
 export const addCategory = async (req, res) => {
   
-  console.log("Inside add category")
+  
   try {
     const newCategory = new Category(req.body);
     await newCategory.save();
