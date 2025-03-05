@@ -45,7 +45,7 @@ export const SearchAll = async (req, res) => {
       }))
     ];
 
-    console.log(" Final Results:", results.length ? results : "No Data Found");
+    
 
     return res.status(200).json({ success: true, data: results });
   
