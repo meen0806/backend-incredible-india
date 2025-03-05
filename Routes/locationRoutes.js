@@ -6,9 +6,9 @@ import {getLocations, addLocation, getLocationById, updateLocation,deleteById, d
 import upload from "../upload.js";
 
 
+router.get('/', getLocations);
 router.post('/', upload.single("picture"), addLocation);
 router.get('/:id',getLocationById);
-router.get('/', getLocations);
 router.put('/:id', upload.single("picture"), updateLocation); 
 router.get('/getchild/:id',getChildLocationsByParentId);
 router.delete('/',deleteMany);

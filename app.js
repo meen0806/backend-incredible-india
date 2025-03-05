@@ -9,6 +9,10 @@
   import locationTransportRoutes from "./Routes/LocationTransportRoutes.js";
   import imageUploadRoutes from "./Routes/imageUploadRoutes.js"
   import SearchRouter from "./Routes/SearchRoutes.js";
+  import path from "path";
+const __dirname = path.resolve();
+
+
 
   import multer from "multer";
 
@@ -19,7 +23,13 @@
   app.use(cors()); 
 
   const upload =  multer();
- 
+
+
+app.use("/admin", express.static(path.join(__dirname, "admin/build")));
+
+app.get("/admin/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "admin/build", "index.html"));
+}); 
   app.use(cors({ origin: "http://localhost:3000" }));
 
 

@@ -49,10 +49,6 @@ export const getNearbyPlaces = async (req, res) => {
   }
 };
 
-
-
-
-
 export const nearByPlaceById = async (req, res) => {
   
   try {
